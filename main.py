@@ -164,7 +164,7 @@ def editor():
 # Création du terrain du jeu
 #canvas
 canvas = tk.Canvas(racine, width=WIDTH, height=HEIGHT, bg="white")
-canvas.grid(row =1, column =0, rowspan=4)
+canvas.grid(row =1, column =1, rowspan=4)
 
 # Robot
 PionV = canvas.create_oval(X1-15, Y1-15, X1+15, Y1+15, width=2, fill='green')
