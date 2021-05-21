@@ -50,12 +50,13 @@ def quitter():
     racine.destroy()
     pass
 
-
+nbr = 0
 def clavier_rouge(event):
     """ Gestion de l'événement Appui sur une touche du clavier """
-    global x0_r, x1_r, y0_r, y1_r
+    global x0_r, x1_r, y0_r, y1_r, nbr
     touche = event.keysym
     print(touche)
+    cpt = "Nombre de déplacements:   "+ str(nbr)
     # déplacement vers le haut
     if touche == 'Up':
         if y0_r != 5 and y1_r != 45:
@@ -64,6 +65,8 @@ def clavier_rouge(event):
             if y0_r < 5:
                 y0_r = 5
                 y1_r = 45
+        #HITBOX
+        nbr +=1
     # déplacement vers le bas
     if touche == 'Down':
         if y0_r != 755 and y1_r != 795:
@@ -72,6 +75,8 @@ def clavier_rouge(event):
             if y0_r > 755:
                 y0_r = 755
                 y1_r = 795
+        #HITBOX
+        nbr +=1
     # déplacement vers la droite
     if touche == 'Right':
         if x0_r != 755 and x1_r != 795:
@@ -80,6 +85,8 @@ def clavier_rouge(event):
             if x0_r > 755:
                 x0_r = 755
                 x1_r = 795
+        #HITBOX
+        nbr +=1
     # déplacement vers la gauche
     if touche == 'Left':
         if x0_r != 5 and x1_r != 45:
@@ -88,8 +95,14 @@ def clavier_rouge(event):
             if x0_r < 5:
                 x0_r = 5
                 x1_r = 45
+        #HITBOX
+        nbr +=1
     print(x0_r, y0_r, x1_r, y1_r)
+    
     canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
+    texte_compteur.config(text=cpt)
+    
+
 
 # Interface graphique
 racine = tk.Tk()
@@ -106,7 +119,7 @@ robot_vert = canvas.create_oval(x0_v, y0_v, x1_v, y1_v, fill="green")
 
 
 # Création labels/bouttons
-texte_compteur = tk.Label(racine, text="Nombre de déplacements:  ")
+texte_compteur = tk.Label(racine, text="Nombre de déplacements:   0")
 texte_compteur.grid(row=0, column=2)
 
 texte_resultat = tk.Label(racine, text="Jeu résolu: NON", bg="red", fg="white")
@@ -206,6 +219,9 @@ mur_horizontal19 = canvas.create_rectangle(700+2, 700-2, 750+2, 700+5,
                                            fill="black")
 mur_horizontal20 = canvas.create_rectangle(550+2, 750-2, 600+2, 750+5,
                                            fill="black")
+
+
+
 
 canvas.focus_set()
 canvas.bind('<Key>',clavier_rouge)
