@@ -55,6 +55,7 @@ def quitter():
 
 def generate_wall():
     walls = [[0] * n for _ in range(n)]
+    walls = [[0] * n for _ in range(n)]
     walls[0][4] = generate_binary_wall([Direction.RIGHT])
     walls[0][5] = generate_binary_wall([Direction.LEFT])
     walls[0][11] = generate_binary_wall([Direction.RIGHT])
@@ -68,7 +69,7 @@ def generate_wall():
     walls[2][11] = generate_binary_wall([Direction.DOWN, Direction.RIGHT])
     walls[2][12] = generate_binary_wall([Direction.LEFT])
     walls[2][13] = generate_binary_wall([Direction.DOWN])
-    pass
+    return walls
 
 
 class Direction(Enum):
@@ -161,88 +162,20 @@ for ligne in range(n):
 # Création des murs verticaux et horizontaux et du carré central dans la grille
 carre_restart = canvas.create_rectangle(350 + 2, 350 + 2, 450 + 2, 450 + 2,
                                         fill="black")
-mur_vertical1 = canvas.create_rectangle(250 - 2, 0, 250 + 5, 50 + 2,
-                                        fill="black")
-mur_vertical2 = canvas.create_rectangle(600 - 2, 0, 600 + 5, 50 + 2,
-                                        fill="black")
-mur_vertical3 = canvas.create_rectangle(350 - 2, 50 + 2, 350 + 5, 100 + 2,
-                                        fill="black")
-mur_vertical4 = canvas.create_rectangle(50 - 2, 100 + 2, 50 + 5, 150 + 2,
-                                        fill="black")
-mur_vertical5 = canvas.create_rectangle(600 - 2, 100 + 2, 600 + 5, 150 + 2,
-                                        fill="black")
-mur_vertical6 = canvas.create_rectangle(700 - 2, 150 + 2, 700 + 5, 200 + 2,
-                                        fill="black")
-mur_vertical7 = canvas.create_rectangle(500 - 2, 200 + 2, 500 + 5, 250 + 2,
-                                        fill="black")
-mur_vertical8 = canvas.create_rectangle(350 - 2, 250 + 2, 350 + 5, 300 + 2,
-                                        fill="black")
-mur_vertical9 = canvas.create_rectangle(600 - 2, 250 + 2, 600 + 5, 300 + 2,
-                                        fill="black")
-mur_vertical10 = canvas.create_rectangle(100 - 2, 300 + 2, 100 + 5, 350 + 2,
-                                         fill="black")
-mur_vertical11 = canvas.create_rectangle(650 - 2, 450 + 2, 650 + 5, 500 + 2,
-                                         fill="black")
-mur_vertical12 = canvas.create_rectangle(200 - 2, 500 + 2, 200 + 5, 550 + 2,
-                                         fill="black")
-mur_vertical13 = canvas.create_rectangle(300 - 2, 550 + 2, 300 + 5, 600 + 2,
-                                         fill="black")
-mur_vertical14 = canvas.create_rectangle(100 - 2, 600 + 2, 100 + 5, 650 + 2,
-                                         fill="black")
-mur_vertical15 = canvas.create_rectangle(450 - 2, 600 + 2, 450 + 5, 650 + 2,
-                                         fill="black")
-mur_vertical16 = canvas.create_rectangle(200 - 2, 650 + 2, 200 + 5, 700 + 2,
-                                         fill="black")
-mur_vertical17 = canvas.create_rectangle(700 - 2, 650 + 2, 700 + 5, 700 + 2,
-                                         fill="black")
-mur_vertical18 = canvas.create_rectangle(600 - 2, 700 + 2, 600 + 5, 750 + 2,
-                                         fill="black")
-mur_vertical19 = canvas.create_rectangle(200 - 2, 750 + 2, 200 + 5, 800,
-                                         fill="black")
-mur_vertical20 = canvas.create_rectangle(700 - 2, 750 + 2, 700 + 5, 800,
-                                         fill="black")
-mur_horizontal1 = canvas.create_rectangle(50 + 2, 100 - 2, 100 + 2, 100 + 5,
-                                          fill="black")
-mur_horizontal2 = canvas.create_rectangle(300 + 2, 100 - 2, 350 + 2, 100 + 5,
-                                          fill="black")
-mur_horizontal3 = canvas.create_rectangle(550 + 2, 150 - 2, 600 + 2, 150 + 5,
-                                          fill="black")
-mur_horizontal4 = canvas.create_rectangle(650 + 2, 150 - 2, 700 + 2, 150 + 5,
-                                          fill="black")
-mur_horizontal5 = canvas.create_rectangle(300 + 2, 250 - 2, 350 + 2, 250 + 5,
-                                          fill="black")
-mur_horizontal6 = canvas.create_rectangle(500 + 2, 250 - 2, 550 + 2, 250 + 5,
-                                          fill="black")
-mur_horizontal7 = canvas.create_rectangle(600 + 2, 250 - 2, 650 + 2, 250 + 5,
-                                          fill="black")
-mur_horizontal8 = canvas.create_rectangle(0, 300 - 2, 50 + 2, 300 + 5,
-                                          fill="black")
-mur_horizontal9 = canvas.create_rectangle(750 + 2, 300 - 2, 800 + 2, 300 + 5,
-                                          fill="black")
-mur_horizontal10 = canvas.create_rectangle(100 + 2, 350 - 2, 150 + 2, 350 + 5,
-                                           fill="black")
-mur_horizontal11 = canvas.create_rectangle(600 + 2, 450 - 2, 650 + 2, 450 + 5,
-                                           fill="black")
-mur_horizontal12 = canvas.create_rectangle(0, 500 - 2, 50 + 2, 500 + 5,
-                                           fill="black")
-mur_horizontal13 = canvas.create_rectangle(750 + 2, 500 - 2, 800 + 2, 500 + 5,
-                                           fill="black")
-mur_horizontal14 = canvas.create_rectangle(150 + 2, 550 - 2, 200 + 2, 550 + 5,
-                                           fill="black")
-mur_horizontal15 = canvas.create_rectangle(250 + 2, 550 - 2, 300 + 2, 550 + 5,
-                                           fill="black")
-mur_horizontal16 = canvas.create_rectangle(450 + 2, 600 - 2, 500 + 2, 600 + 5,
-                                           fill="black")
-mur_horizontal17 = canvas.create_rectangle(100 + 2, 650 - 2, 150 + 2, 650 + 5,
-                                           fill="black")
-mur_horizontal18 = canvas.create_rectangle(200 + 2, 650 - 2, 250 + 2, 650 + 5,
-                                           fill="black")
-mur_horizontal19 = canvas.create_rectangle(700 + 2, 700 - 2, 750 + 2, 700 + 5,
-                                           fill="black")
-mur_horizontal20 = canvas.create_rectangle(550 + 2, 750 - 2, 600 + 2, 750 + 5,
-                                           fill="black")
 
-generate_wall()
+walls = generate_wall()
+for y, values in enumerate(walls):
+    for x, value in enumerate(values):
+        if value == 0:
+            continue
+        if value & Direction.UP.value:
+            canvas.create_rectangle(x * c + 2, y * c + 2, (x + 1) * c + 2, y * c + 4, fill="black")
+        if value & Direction.DOWN.value:
+            canvas.create_rectangle(x * c + 2, (y + 1) * c, (x + 1) * c + 2, (y + 1) * c + 2, fill="black")
+        if value & Direction.LEFT.value:
+            canvas.create_rectangle(x * c + 2, y * c + 2, x * c + 4, (y + 1) * c + 2, fill="black")
+        if value & Direction.RIGHT.value:
+            canvas.create_rectangle((x + 1) * c, y * c + 2, (x + 1) * c + 2, (y + 1) * c + 2, fill="black")
 
 canvas.focus_set()
 canvas.bind('<Key>', clavier_rouge)
