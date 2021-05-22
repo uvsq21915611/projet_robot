@@ -11,6 +11,7 @@
 ###################################################
 
 import tkinter as tk
+from enum import Enum
 
 c = 50  # Longueur d'un côté d'une case
 n = 16  # Nombre de cases par ligne et par colonne
@@ -50,6 +51,39 @@ def quitter():
     """Fermer fenêtre"""
     racine.destroy()
     pass
+
+
+def generate_wall():
+    walls = [[0] * n for _ in range(n)]
+    walls[0][4] = generate_binary_wall([Direction.RIGHT])
+    walls[0][5] = generate_binary_wall([Direction.LEFT])
+    walls[0][11] = generate_binary_wall([Direction.RIGHT])
+    walls[0][12] = generate_binary_wall([Direction.LEFT])
+    walls[1][1] = generate_binary_wall([Direction.DOWN])
+    walls[1][6] = generate_binary_wall([Direction.LEFT, Direction.DOWN])
+    walls[1][7] = generate_binary_wall([Direction.LEFT])
+    walls[2][0] = generate_binary_wall([Direction.RIGHT])
+    walls[2][1] = generate_binary_wall([Direction.LEFT, Direction.UP])
+    walls[2][6] = generate_binary_wall([Direction.LEFT])
+    walls[2][11] = generate_binary_wall([Direction.DOWN, Direction.RIGHT])
+    walls[2][12] = generate_binary_wall([Direction.LEFT])
+    walls[2][13] = generate_binary_wall([Direction.DOWN])
+    pass
+
+
+class Direction(Enum):
+    UP = 0b1000
+    RIGHT = 0b0100
+    DOWN = 0b0010
+    LEFT = 0b0001
+    pass
+
+
+def generate_binary_wall(directions):
+    code = 0
+    for direction in directions:
+        code |= direction.value
+    return code
 
 
 nbr = 0
@@ -207,6 +241,8 @@ mur_horizontal19 = canvas.create_rectangle(700 + 2, 700 - 2, 750 + 2, 700 + 5,
                                            fill="black")
 mur_horizontal20 = canvas.create_rectangle(550 + 2, 750 - 2, 600 + 2, 750 + 5,
                                            fill="black")
+
+generate_wall()
 
 canvas.focus_set()
 canvas.bind('<Key>', clavier_rouge)
