@@ -58,45 +58,30 @@ def clavier_rouge(event):
     print(touche)
     cpt = "Nombre de déplacements:   "+ str(nbr)
     # déplacement vers le haut
+    # déplacement vers le haut
     if touche == 'Up':
-        if y0_r != 5 and y1_r != 45:
-            y0_r -= 800
-            y1_r -= 800
-            if y0_r < 5:
-                y0_r = 5
-                y1_r = 45
-        #HITBOX
-        nbr +=1
+        if y0_r > 40:
+            y0_r -= 50
+            y1_r -= 50
+        nbr+=1
     # déplacement vers le bas
     if touche == 'Down':
-        if y0_r != 755 and y1_r != 795:
-            y0_r += 800
-            y1_r += 800
-            if y0_r > 755:
-                y0_r = 755
-                y1_r = 795
-        #HITBOX
-        nbr +=1
+        if y0_r < 750:
+            y0_r += 50
+            y1_r += 50
+        nbr+=1
     # déplacement vers la droite
     if touche == 'Right':
-        if x0_r != 755 and x1_r != 795:
-            x0_r += 800
-            x1_r += 800
-            if x0_r > 755:
-                x0_r = 755
-                x1_r = 795
-        #HITBOX
-        nbr +=1
+        if x1_r < 750:
+            x0_r += 50
+            x1_r += 50
+        nbr+=1
     # déplacement vers la gauche
     if touche == 'Left':
-        if x0_r != 5 and x1_r != 45:
-            x0_r -= 800
-            x1_r -= 800
-            if x0_r < 5:
-                x0_r = 5
-                x1_r = 45
-        #HITBOX
-        nbr +=1
+        if x1_r > 50:
+            x0_r -= 50
+            x1_r -= 50
+        nbr+=1
     print(x0_r, y0_r, x1_r, y1_r)
     
     canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
