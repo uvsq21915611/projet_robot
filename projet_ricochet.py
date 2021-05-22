@@ -55,6 +55,7 @@ def quitter():
 
 def generate_wall():
     walls = [[0] * n for _ in range(n)]
+    walls = [[0] * n for _ in range(n)]
     walls[0][4] = generate_binary_wall([Direction.RIGHT])
     walls[0][5] = generate_binary_wall([Direction.LEFT])
     walls[0][11] = generate_binary_wall([Direction.RIGHT])
@@ -68,7 +69,7 @@ def generate_wall():
     walls[2][11] = generate_binary_wall([Direction.DOWN, Direction.RIGHT])
     walls[2][12] = generate_binary_wall([Direction.LEFT])
     walls[2][13] = generate_binary_wall([Direction.DOWN])
-    pass
+    return walls
 
 
 class Direction(Enum):
@@ -162,7 +163,19 @@ for ligne in range(n):
 carre_restart = canvas.create_rectangle(350 + 2, 350 + 2, 450 + 2, 450 + 2,
                                         fill="black")
 
-generate_wall()
+walls = generate_wall()
+for y, values in enumerate(walls):
+    for x, value in enumerate(values):
+        if value == 0:
+            continue
+        if value & Direction.UP.value:
+            canvas.create_rectangle(x * c + 2, y * c + 2, (x + 1) * c + 2, y * c + 4, fill="black")
+        if value & Direction.DOWN.value:
+            canvas.create_rectangle(x * c + 2, (y + 1) * c, (x + 1) * c + 2, (y + 1) * c + 2, fill="black")
+        if value & Direction.LEFT.value:
+            canvas.create_rectangle(x * c + 2, y * c + 2, x * c + 4, (y + 1) * c + 2, fill="black")
+        if value & Direction.RIGHT.value:
+            canvas.create_rectangle((x + 1) * c, y * c + 2, (x + 1) * c + 2, (y + 1) * c + 2, fill="black")
 
 canvas.focus_set()
 canvas.bind('<Key>', clavier_rouge)
