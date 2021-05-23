@@ -44,6 +44,8 @@ x1_j = 195 + 2
 y0_j = 105 + 2
 y1_j = 145 + 2
 
+p = WIDTH // 16 
+
 
 # Création de fonctions
 
@@ -51,6 +53,10 @@ def quitter():
     """Fermer fenêtre"""
     racine.destroy()
     pass
+
+def clique(event):
+    position = (event.x // p, event.y // p)
+    print(position)
 
 
 def generate_wall():
@@ -60,13 +66,11 @@ def generate_wall():
     walls[0][11] = generate_binary_wall([Direction.RIGHT])
     walls[0][12] = generate_binary_wall([Direction.LEFT])
     walls[1][1] = generate_binary_wall([Direction.DOWN])
-    walls[1][5] = generate_binary_wall([Direction.RIGHT])
-    walls[1][6] = generate_binary_wall([Direction.LEFT, Direction.DOWN, Direction.RIGHT])
+    walls[1][6] = generate_binary_wall([Direction.DOWN, Direction.RIGHT])
     walls[1][7] = generate_binary_wall([Direction.LEFT])
     walls[2][0] = generate_binary_wall([Direction.RIGHT])
     walls[2][1] = generate_binary_wall([Direction.LEFT, Direction.UP])
-    walls[2][5] = generate_binary_wall([Direction.RIGHT])
-    walls[2][6] = generate_binary_wall([Direction.LEFT, Direction.UP])
+    walls[2][6] = generate_binary_wall([Direction.UP])
     walls[2][11] = generate_binary_wall([Direction.DOWN, Direction.RIGHT])
     walls[2][12] = generate_binary_wall([Direction.LEFT])
     walls[2][13] = generate_binary_wall([Direction.DOWN])
@@ -176,6 +180,18 @@ def clavier_rouge(event):
         elif y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
             y0_r = 457
             y1_r = 497
+               # condition mur vert
+        if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
+            y0_r = y0_v+50
+            y1_r = y1_v+50
+        # condition mur jaune
+        if x0_r == x0_j and x1_r == x1_j and y0_r == y0_j and y1_r == y1_j:
+            y0_r = y0_j+50
+            y1_r = y1_j+50
+        # condition mur bleu
+        if x0_r == x0_b and x1_r == x1_b and y0_r == y0_b and y1_r == y1_b:
+            y0_r = y0_b+50
+            y1_r = y1_b+50
     # déplacement vers le bas
     if touche == 'Down':
         if y0_r < 750:
@@ -190,6 +206,18 @@ def clavier_rouge(event):
         elif y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
             y0_r = 307
             y1_r = 347
+               # condition mur vert
+        if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
+            y0_r = y0_v-50
+            y1_r = y1_v-50
+        # condition mur bleu
+        if x0_r == x0_b and x1_r == x1_b and y0_r == y0_b and y1_r == y1_b:
+            y0_r = y0_b-50
+            y1_r = y1_b-50
+        # condition mur jaune
+        if x0_r == x0_j and x1_r == x1_j and y0_r == y0_j and y1_r == y1_j:
+            y0_r = y0_j-50
+            y1_r = y1_j-50
     # déplacement vers la droite
     if touche == 'Right':
         if x1_r < 750:
@@ -204,7 +232,18 @@ def clavier_rouge(event):
         elif y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
             x0_r = 307
             x1_r = 347
-    # déplacement vers la gauche
+               # condition mur vert
+        if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
+            x0_r = x0_v-50
+            x1_r = x1_v-50
+        # condition mur bleu
+        if x0_r == x0_b and x1_r == x1_b and y0_r == y0_b and y1_r == y1_b:
+            x0_r = x0_b-50
+            x1_r = x1_b-50
+        # condition mur jaune
+        if x0_r == x0_j and x1_r == x1_j and y0_r == y0_j and y1_r == y1_j:
+            x0_r = x0_j-50
+            x1_r = x1_j-50
     if touche == 'Left':
         if x1_r > 50:
             x, y = get_robot_coords(x0_r, y0_r)
@@ -218,6 +257,18 @@ def clavier_rouge(event):
         elif y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
             x0_r = 457
             x1_r = 497
+   # condition mur vert
+        if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
+            x0_r = x0_v+50
+            x1_r = x1_v+50
+        # condition mur bleu
+        if x0_r == x0_b and x1_r == x1_b and y0_r == y0_b and y1_r == y1_b:
+            x0_r = x0_b+50
+            x1_r = x1_b+50
+        # condition mur jaune
+        if x0_r == x0_j and x1_r == x1_j and y0_r == y0_j and y1_r == y1_j:
+            x0_r = x0_j+50
+            x1_r = x1_j+50
     print(x0_r, y0_r, x1_r, y1_r)
     canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
     texte_compteur.config(text=cpt)
@@ -233,8 +284,8 @@ canvas.grid(row=0, column=0, rowspan=5, columnspan=1)
 
 robot_rouge = canvas.create_oval(x0_r, y0_r, x1_r, y1_r, fill="red")
 robot_vert = canvas.create_oval(x0_v, y0_v, x1_v, y1_v, fill="green")
-# robot_bleu = canvas.create_oval(x0_b, y0_b, x1_b, y1_b, fill="blue")
-# robot_jaune = canvas.create_oval(x0_j, y0_j, x1_j, y1_j, fill="yellow")
+robot_bleu = canvas.create_oval(x0_b, y0_b, x1_b, y1_b, fill="blue")
+robot_jaune = canvas.create_oval(x0_j, y0_j, x1_j, y1_j, fill="yellow")
 
 
 # Création labels/bouttons
@@ -246,6 +297,8 @@ texte_resultat.grid(row=3, column=2)
 
 boutton_quitter = tk.Button(racine, text='Quitter', command=quitter)
 boutton_quitter.grid(row=4, column=2)
+
+canvas.bind("<Button-1>", clique)
 
 # Création grille 16x16 avec carré de côté 50
 for ligne in range(n):
