@@ -51,22 +51,22 @@ y0_cr = 765+2
 y1_cr = 785+2
 
 # Coordonnées cible verte
-x0_cv = 165+2
-x1_cv = 185+2
-y0_cv = 765+2
-y1_cv = 785+2
+x0_cv = 715+2
+x1_cv = 735+2
+y0_cv = 715+2
+y1_cv = 735+2
 
 # Coordonnées cible bleue
-x0_cb = 165+2
-x1_cb = 185+2
-y0_cb = 765+2
-y1_cb = 785+2
+x0_cb = 665+2
+x1_cb = 685+2
+y0_cb = 165+2
+y1_cb = 185+2
 
 # Coordonnées cible jaune
-x0_cj = 165+2
-x1_cj = 185+2
-y0_cj = 765+2
-y1_cj = 785+2
+x0_cj = 115+2
+x1_cj = 135+2
+y0_cj = 665+2
+y1_cj = 685+2
 
 p = WIDTH // 16 
 
