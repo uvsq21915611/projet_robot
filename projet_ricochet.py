@@ -44,8 +44,31 @@ x1_j = 195 + 2
 y0_j = 105 + 2
 y1_j = 145 + 2
 
-p = WIDTH // 16 
+# Coordonnées cible rouge
+x0_cr = 165+2
+x1_cr = 185+2
+y0_cr = 765+2
+y1_cr = 785+2
 
+# Coordonnées cible verte
+x0_cv = 165+2
+x1_cv = 185+2
+y0_cv = 765+2
+y1_cv = 785+2
+
+# Coordonnées cible bleue
+x0_cb = 165+2
+x1_cb = 185+2
+y0_cb = 765+2
+y1_cb = 785+2
+
+# Coordonnées cible jaune
+x0_cj = 165+2
+x1_cj = 185+2
+y0_cj = 765+2
+y1_cj = 785+2
+
+p = WIDTH // 16 
 
 # Création de fonctions
 
@@ -638,6 +661,10 @@ robot_vert = canvas.create_oval(x0_v, y0_v, x1_v, y1_v, fill="green")
 robot_bleu = canvas.create_oval(x0_b, y0_b, x1_b, y1_b, fill="blue")
 robot_jaune = canvas.create_oval(x0_j, y0_j, x1_j, y1_j, fill="yellow")
 
+cible_rouge = canvas.create_rectangle(x0_cr, y0_cr, x1_cr, y1_cr, fill="red")
+cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green")
+cible_bleu = canvas.create_rectangle(x0_cb, y0_cb, x1_cb, y1_cb, fill="blue")
+cible_jaune = canvas.create_rectangle(x0_cj, y0_cj, x1_cj, y1_cj, fill="yellow")
 
 # Création labels/bouttons
 texte_compteur = tk.Label(racine, text="Nombre de déplacements:   0")
