@@ -85,7 +85,7 @@ def generate_wall():
     walls[5][12] = generate_binary_wall([Direction.UP, Direction.LEFT])
     walls[5][15] = generate_binary_wall([Direction.DOWN])
     walls[6][0] = generate_binary_wall([Direction.UP])
-     walls[6][1] = generate_binary_wall([Direction.RIGHT])
+    walls[6][1] = generate_binary_wall([Direction.RIGHT])
     walls[6][2] = generate_binary_wall([Direction.LEFT, Direction.DOWN])
     walls[6][7] = generate_binary_wall([Direction.DOWN])
     walls[6][8] = generate_binary_wall([Direction.DOWN])
