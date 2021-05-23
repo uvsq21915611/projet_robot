@@ -148,12 +148,16 @@ def generate_binary_wall(directions):
     return code
 
 
+def get_robot_coords(x, y):
+    return int((x - 7) / c), int((y - 7) / c)
+
+
 nbr = 0
 
 
 def clavier_rouge(event):
     """ Gestion de l'événement Appui sur une touche du clavier """
-    global x0_r, x1_r, y0_r, y1_r, nbr
+    global x0_r, x1_r, y0_r, y1_r, nbr, walls
     touche = event.keysym
     print(touche)
     cpt = "Nombre de déplacements:   " + str(nbr)
@@ -161,49 +165,57 @@ def clavier_rouge(event):
     # déplacement vers le haut
     if touche == 'Up':
         if y0_r > 40:
-            y0_r -= 50
-            y1_r -= 50
-        nbr += 1
-        if y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
+            x, y = get_robot_coords(x0_r, y0_r)
+            if not walls[y][x] & Direction.UP.value:
+                y0_r -= 50
+                y1_r -= 50
+                nbr += 1
+        elif y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
             y0_r = 457
             y1_r = 497
-        if y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
+        elif y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
             y0_r = 457
             y1_r = 497
     # déplacement vers le bas
     if touche == 'Down':
         if y0_r < 750:
-            y0_r += 50
-            y1_r += 50
-        nbr += 1
-        if y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
+            x, y = get_robot_coords(x0_r, y0_r)
+            if not walls[y][x] & Direction.DOWN.value:
+                y0_r += 50
+                y1_r += 50
+                nbr += 1
+        elif y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
             y0_r = 307
             y1_r = 347
-        if y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
+        elif y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
             y0_r = 307
             y1_r = 347
     # déplacement vers la droite
     if touche == 'Right':
         if x1_r < 750:
-            x0_r += 50
-            x1_r += 50
-        nbr += 1
-        if y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
+            x, y = get_robot_coords(x0_r, y0_r)
+            if not walls[y][x] & Direction.RIGHT.value:
+                x0_r += 50
+                x1_r += 50
+                nbr += 1
+        elif y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
             x0_r = 307
             x1_r = 347
-        if y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
+        elif y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
             x0_r = 307
             x1_r = 347
     # déplacement vers la gauche
     if touche == 'Left':
         if x1_r > 50:
-            x0_r -= 50
-            x1_r -= 50
-        nbr += 1
-        if y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
+            x, y = get_robot_coords(x0_r, y0_r)
+            if not walls[y][x] & Direction.LEFT.value:
+                x0_r -= 50
+                x1_r -= 50
+                nbr += 1
+        elif y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
             x0_r = 457
             x1_r = 497
-        if y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
+        elif y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
             x0_r = 457
             x1_r = 497
     print(x0_r, y0_r, x1_r, y1_r)
