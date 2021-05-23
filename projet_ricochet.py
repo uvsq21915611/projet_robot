@@ -678,6 +678,4 @@ for y, values in enumerate(walls):
             canvas.create_rectangle((x + 1) * c, y * c + 2, (x + 1) * c + 2, (y + 1) * c + 2, fill="black")
 
 canvas.focus_set()
-canvas.bind('<Key>', clavier_rouge)
-
 racine.mainloop()
