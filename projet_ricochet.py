@@ -250,10 +250,10 @@ def clavier_rouge(event):
                 x0_r -= 50
                 x1_r -= 50
                 nbr += 1
-        elif y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
+        if y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
             x0_r = 457
             x1_r = 497
-        elif y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
+        if y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
             x0_r = 457
             x1_r = 497
         # condition mur vert
