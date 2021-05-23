@@ -166,7 +166,6 @@ def clavier_rouge(event):
     print(touche)
     cpt = "Nombre de déplacements:   " + str(nbr)
     # déplacement vers le haut
-    # déplacement vers le haut
     if touche == 'Up':
         if y0_r > 40:
             x, y = get_robot_coords(x0_r, y0_r)
@@ -174,13 +173,13 @@ def clavier_rouge(event):
                 y0_r -= 50
                 y1_r -= 50
                 nbr += 1
-        elif y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
+        if y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
             y0_r = 457
             y1_r = 497
-        elif y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
+        if y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
             y0_r = 457
             y1_r = 497
-               # condition mur vert
+        # condition mur vert
         if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
             y0_r = y0_v+50
             y1_r = y1_v+50
@@ -200,13 +199,13 @@ def clavier_rouge(event):
                 y0_r += 50
                 y1_r += 50
                 nbr += 1
-        elif y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
+        if y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
             y0_r = 307
             y1_r = 347
-        elif y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
+        if y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
             y0_r = 307
             y1_r = 347
-               # condition mur vert
+        # condition mur vert
         if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
             y0_r = y0_v-50
             y1_r = y1_v-50
@@ -226,13 +225,13 @@ def clavier_rouge(event):
                 x0_r += 50
                 x1_r += 50
                 nbr += 1
-        elif y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
+        if y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
             x0_r = 307
             x1_r = 347
-        elif y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
+        if y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
             x0_r = 307
             x1_r = 347
-               # condition mur vert
+        # condition mur vert
         if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
             x0_r = x0_v-50
             x1_r = x1_v-50
@@ -257,7 +256,7 @@ def clavier_rouge(event):
         elif y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
             x0_r = 457
             x1_r = 497
-   # condition mur vert
+        # condition mur vert
         if x0_r == x0_v and x1_r == x1_v and y0_r == y0_v and y1_r == y1_v:
             x0_r = x0_v+50
             x1_r = x1_v+50
@@ -273,6 +272,347 @@ def clavier_rouge(event):
     canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
     texte_compteur.config(text=cpt)
 
+def clavier_vert(event):
+    """ Gestion de l'événement Appui sur une touche du clavier """
+    global x0_v, x1_v, y0_v, y1_v, nbr
+    touche = event.keysym
+    print(touche)
+    cpt = "Nombre de déplacements:   " + str(nbr)
+    # déplacement vers le haut
+    if touche == 'Up':
+        if y0_v > 40:
+            x, y = get_robot_coords(x0_v, y0_v)
+            if not walls[y][x] & Direction.UP.value:
+                y0_v -= 50
+                y1_v -= 50
+                nbr += 1
+        if y0_v == 407 and y1_v == 447 and x0_v == 357 and x1_v == 397:
+            y0_v= 457
+            y1_v= 497
+        if y0_v == 407 and y1_v == 447 and x0_v == 407 and x1_v == 447:
+            y0_v = 457
+            y1_v = 497
+        # condition mur rouge
+        if x0_v == x0_r and x1_v == x1_r and y0_v == y0_r and y1_v == y1_r:
+            y0_v = y0_r+50
+            y1_v = y1_r+50
+        # condition mur bleu
+        if x0_v == x0_b and x1_v == x1_b and y0_v == y0_b and y1_v == y1_b:
+            y0_v = y0_b+50
+            y1_v = y1_b+50
+        # condition mur jaune
+        if x0_v == x0_j and x1_v == x1_j and y0_v == y0_j and y1_v == y1_j:
+            y0_v = y0_j+50
+            y1_v = y1_j+50
+    # déplacement vers le bas
+    if touche == 'Down':
+        if y0_v < 750:
+            x, y = get_robot_coords(x0_v, y0_v)
+            if not walls[y][x] & Direction.DOWN.value:
+                y0_v += 50
+                y1_v += 50
+                nbr += 1
+        if y0_v == 357 and y1_v == 397 and x0_v == 357 and x1_v == 397:
+            y0_v = 307
+            y1_v = 347
+        if y0_v == 357 and y1_v == 397 and x0_v == 407 and x1_v == 447:
+            y0_v = 307
+            y1_v = 347
+        # condition mur rouge
+        if x0_v == x0_r and x1_v == x1_r and y0_v == y0_r and y1_v == y1_r:
+            y0_v = y0_r-50
+            y1_v = y1_r-50
+        # condition mur bleu
+        if x0_v == x0_b and x1_v == x1_b and y0_v == y0_b and y1_v == y1_b:
+            y0_v = y0_b-50
+            y1_v = y1_b-50
+        # condition mur jaune
+        if x0_v == x0_j and x1_v == x1_j and y0_v == y0_j and y1_v == y1_j:
+            y0_v = y0_j-50
+            y1_v = y1_j-50
+    # déplacement vers la droite
+    if touche == 'Right':
+        if x1_v < 750:
+            x, y = get_robot_coords(x0_v, y0_v)
+            if not walls[y][x] & Direction.RIGHT.value:
+                x0_v += 50
+                x1_v += 50
+                nbr += 1
+        if y0_v == 357 and y1_v == 397 and x0_v == 357 and x1_v == 397:
+            x0_v = 307
+            x1_v = 347
+        if y0_v == 407 and y1_v == 447 and x0_v == 357 and x1_v == 397:
+            x0_v = 307
+            x1_v = 347
+        # condition mur rouge
+        if x0_v == x0_r and x1_v == x1_r and y0_v == y0_r and y1_v == y1_r:
+            x0_v = x0_r-50
+            x1_v = x1_r-50
+        # condition mur bleu
+        if x0_v == x0_b and x1_v == x1_b and y0_v == y0_b and y1_v == y1_b:
+            x0_v = x0_b-50
+            x1_v = x1_b-50
+        # condition mur jaune
+        if x0_v == x0_j and x1_v == x1_j and y0_v == y0_j and y1_v == y1_j:
+            x0_v = x0_j-50
+            x1_v = x1_j-50
+    # déplacement vers la gauche
+    if touche == 'Left':
+        if x1_v > 50:
+            x, y = get_robot_coords(x0_v, y0_v)
+            if not walls[y][x] & Direction.LEFT.value:
+                x0_v -= 50
+                x1_v -= 50
+                nbr += 1
+        if y0_v == 407 and y1_v == 447 and x0_v == 407 and x1_v == 447:
+            x0_v = 457
+            x1_v = 497
+        if y0_v == 357 and y1_v == 397 and x0_v == 407 and x1_v == 447:
+            x0_v = 457
+            x1_v = 497
+        # condition mur rouge
+        if x0_v == x0_r and x1_v == x1_r and y0_v == y0_r and y1_v == y1_r:
+            x0_v = x0_r+50
+            x1_v = x1_r+50
+        # condition mur bleu
+        if x0_v == x0_b and x1_v == x1_b and y0_v == y0_b and y1_v == y1_b:
+            x0_v = x0_b+50
+            x1_v = x1_b+50
+        # condition mur jaune
+        if x0_v == x0_j and x1_v == x1_j and y0_v == y0_j and y1_v == y1_j:
+            x0_v = x0_j+50
+            x1_v = x1_j+50
+    print(x0_v, y0_v, x1_v, y1_v)
+    canvas.coords(robot_vert, x0_v, y0_v, x1_v, y1_v)
+    texte_compteur.config(text=cpt)
+
+def clavier_bleu(event):
+    """ Gestion de l'événement Appui sur une touche du clavier """
+    global x0_b, x1_b, y0_b, y1_b, nbr
+    touche = event.keysym
+    print(touche)
+    cpt = "Nombre de déplacements:   " + str(nbr)
+    # déplacement vers le haut
+    if touche == 'Up':
+        if y0_b > 40:
+            x, y = get_robot_coords(x0_b, y0_b)
+            if not walls[y][x] & Direction.UP.value:
+                y0_b -= 50
+                y1_b -= 50
+                nbr += 1
+        if y0_b == 407 and y1_b == 447 and x0_b == 357 and x1_b == 397:
+            y0_b= 457
+            y1_b= 497
+        if y0_b == 407 and y1_b == 447 and x0_b == 407 and x1_b == 447:
+            y0_b = 457
+            y1_b = 497
+        # condition mur vert
+        if x0_b == x0_v and x1_b == x1_v and y0_b == y0_v and y1_b == y1_v:
+            y0_b = y0_v+50
+            y1_b = y1_v+50
+        # condition mur jaune
+        if x0_b == x0_j and x1_b == x1_j and y0_b == y0_j and y1_b == y1_j:
+            y0_b = y0_j+50
+            y1_b = y1_j+50
+        # condition mur rouge
+        if x0_b == x0_r and x1_b == x1_r and y0_b == y0_r and y1_b == y1_r:
+            y0_b = y0_r+50
+            y1_b = y1_r+50
+    # déplacement vers le bas
+    if touche == 'Down':
+        if y0_b < 750:
+            x, y = get_robot_coords(x0_b, y0_b)
+            if not walls[y][x] & Direction.DOWN.value:
+                y0_b += 50
+                y1_b += 50
+                nbr += 1
+        if y0_b == 357 and y1_b == 397 and x0_b == 357 and x1_b == 397:
+            y0_b = 307
+            y1_b = 347
+        if y0_b == 357 and y1_b == 397 and x0_b == 407 and x1_b == 447:
+            y0_b = 307
+            y1_b = 347
+        # condition mur vert
+        if x0_b == x0_v and x1_b == x1_v and y0_b == y0_v and y1_b == y1_v:
+            y0_b = y0_v-50
+            y1_b = y1_v-50
+        # condition mur jaune
+        if x0_b == x0_j and x1_b == x1_j and y0_b == y0_j and y1_b == y1_j:
+            y0_b = y0_j-50
+            y1_b = y1_j-50
+        # condition mur rouge
+        if x0_b == x0_r and x1_b == x1_r and y0_b == y0_r and y1_b == y1_r:
+            y0_b = y0_r-50
+            y1_b = y1_r-50
+    # déplacement vers la droite
+    if touche == 'Right':
+        if x1_b < 750:
+            x, y = get_robot_coords(x0_b, y0_b)
+            if not walls[y][x] & Direction.RIGHT.value:
+                x0_b += 50
+                x1_b += 50
+                nbr += 1
+        if y0_b == 357 and y1_b == 397 and x0_b == 357 and x1_b == 397:
+            x0_b = 307
+            x1_b = 347
+        if y0_b == 407 and y1_b == 447 and x0_b == 357 and x1_b == 397:
+            x0_b = 307
+            x1_b = 347
+        # condition mur vert
+        if x0_b == x0_v and x1_b == x1_v and y0_b == y0_v and y1_b == y1_v:
+            x0_b = x0_v-50
+            x1_b = x1_v-50
+        # condition mur jaune
+        if x0_b == x0_j and x1_b == x1_j and y0_b == y0_j and y1_b == y1_j:
+            x0_b = x0_j-50
+            x1_b = x1_j-50
+        # condition mur rouge
+        if x0_b == x0_r and x1_b == x1_r and y0_b == y0_r and y1_b == y1_r:
+            x0_b = x0_r-50
+            x1_b = x1_r-50
+    # déplacement vers la gauche
+    if touche == 'Left':
+        if x1_b > 50:
+            x, y = get_robot_coords(x0_b, y0_b)
+            if not walls[y][x] & Direction.LEFT.value:
+                x0_b -= 50
+                x1_b -= 50
+                nbr += 1
+        if y0_b == 407 and y1_b == 447 and x0_b == 407 and x1_b == 447:
+            x0_b = 457
+            x1_b = 497
+        if y0_b == 357 and y1_b == 397 and x0_b == 407 and x1_b == 447:
+            x0_b = 457
+            x1_b = 497
+        # condition mur vert
+        if x0_b == x0_v and x1_b == x1_v and y0_b == y0_v and y1_b == y1_v:
+            x0_b = x0_v+50
+            x1_b = x1_v+50
+        # condition mur jaune
+        if x0_b == x0_j and x1_b == x1_j and y0_b == y0_j and y1_b == y1_j:
+            x0_b = x0_j+50
+            x1_b = x1_j+50
+        # condition mur rouge
+        if x0_b == x0_r and x1_b == x1_r and y0_b == y0_r and y1_b == y1_r:
+            x0_b = x0_r+50
+            x1_b = x1_r+50
+    print(x0_b, y0_b, x1_b, y1_b)
+    canvas.coords(robot_bleu, x0_b, y0_b, x1_b, y1_b)
+    texte_compteur.config(text=cpt)
+
+def clavier_jaune(event):
+    """ Gestion de l'événement Appui sur une touche du clavier """
+    global x0_j, x1_j, y0_j, y1_j, nbr
+    touche = event.keysym
+    print(touche)
+    cpt = "Nombre de déplacements:   " + str(nbr)
+    # déplacement vers le haut
+    if touche == 'Up':
+        if y0_j > 40:
+            x, y = get_robot_coords(x0_j, y0_j)
+            if not walls[y][x] & Direction.UP.value:
+                y0_j -= 50
+                y1_j -= 50
+                nbr += 1
+        if y0_j == 407 and y1_j == 447 and x0_j == 357 and x1_j == 397:
+            y0_j= 457
+            y1_j= 497
+        if y0_j == 407 and y1_j == 447 and x0_j == 407 and x1_j == 447:
+            y0_j = 457
+            y1_j = 497
+        # condition mur vert
+        if x0_j == x0_v and x1_j == x1_v and y0_j == y0_v and y1_j == y1_v:
+            y0_j = y0_v+50
+            y1_j = y1_v+50
+        # condition mur bleu
+        if x0_j == x0_b and x1_j == x1_b and y0_j == y0_b and y1_j == y1_b:
+            y0_j = y0_b+50
+            y1_j = y1_b+50
+        # condition mur rouge
+        if x0_j == x0_r and x1_j == x1_r and y0_j == y0_r and y1_j == y1_r:
+            y0_j = y0_r+50
+            y1_j = y1_r+50
+    # déplacement vers le bas
+    if touche == 'Down':
+        if y0_j < 750:
+            x, y = get_robot_coords(x0_j, y0_j)
+            if not walls[y][x] & Direction.DOWN.value:
+                y0_j += 50
+                y1_j += 50
+                nbr += 1
+        if y0_j == 357 and y1_j == 397 and x0_j == 357 and x1_j == 397:
+            y0_j = 307
+            y1_j = 347
+        if y0_j == 357 and y1_j == 397 and x0_j == 407 and x1_j == 447:
+            y0_j = 307
+            y1_j = 347
+        # condition mur vert
+        if x0_j == x0_v and x1_j == x1_v and y0_j == y0_v and y1_j == y1_v:
+            y0_j = y0_v-50
+            y1_j = y1_v-50
+        # condition mur bleu
+        if x0_j == x0_b and x1_j == x1_b and y0_j == y0_b and y1_j == y1_b:
+            y0_j = y0_b-50
+            y1_j = y1_b-50
+        # condition mur rouge
+        if x0_j == x0_r and x1_j == x1_r and y0_j == y0_r and y1_j == y1_r:
+            y0_j = y0_r-50
+            y1_j = y1_r-50
+    # déplacement vers la droite
+    if touche == 'Right':
+        if x1_j < 750:
+            x, y = get_robot_coords(x0_j, y0_j)
+            if not walls[y][x] & Direction.RIGHT.value:
+                x0_j += 50
+                x1_j += 50
+                nbr += 1
+        if y0_j == 357 and y1_j == 397 and x0_j == 357 and x1_j == 397:
+            x0_j = 307
+            x1_j = 347
+        if y0_j == 407 and y1_j == 447 and x0_j == 357 and x1_j == 397:
+            x0_j = 307
+            x1_j = 347
+        # condition mur vert
+        if x0_j == x0_v and x1_j == x1_v and y0_j == y0_v and y1_j == y1_v:
+            x0_j = x0_v-50
+            x1_j = x1_v-50
+        # condition mur bleu
+        if x0_j == x0_b and x1_j == x1_b and y0_j == y0_b and y1_j == y1_b:
+            x0_j = x0_b-50
+            x1_j = x1_b-50
+        # condition mur rouge
+        if x0_j == x0_r and x1_j == x1_r and y0_j == y0_r and y1_j == y1_r:
+            x0_j = x0_r-50
+            x1_j = x1_r-50
+    # déplacement vers la gauche
+    if touche == 'Left':
+        if x1_j > 50:
+            x, y = get_robot_coords(x0_j, y0_j)
+            if not walls[y][x] & Direction.LEFT.value:
+                x0_j -= 50
+                x1_j -= 50
+                nbr += 1
+        if y0_j == 407 and y1_j == 447 and x0_j == 407 and x1_j == 447:
+            x0_j = 457
+            x1_j = 497
+        if y0_j == 357 and y1_j == 397 and x0_j == 407 and x1_j == 447:
+            x0_j = 457
+            x1_j = 497
+        # condition mur vert
+        if x0_j == x0_v and x1_j == x1_v and y0_j == y0_v and y1_j == y1_v:
+            x0_j = x0_v+50
+            x1_j = x1_v+50
+        # condition mur bleu
+        if x0_j == x0_b and x1_j == x1_b and y0_j == y0_b and y1_j == y1_b:
+            x0_j = x0_b+50
+            x1_j = x1_b+50
+        # condition mur rouge
+        if x0_j == x0_r and x1_j == x1_r and y0_j == y0_r and y1_j == y1_r:
+            x0_j = x0_r+50
+            x1_j = x1_r+50
+    print(x0_j, y0_j, x1_j, y1_j)
+    canvas.coords(robot_jaune, x0_j, y0_j, x1_j, y1_j)
+    texte_compteur.config(text=cpt)
 
 # Interface graphique
 racine = tk.Tk()
