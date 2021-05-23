@@ -103,26 +103,49 @@ def clavier_rouge(event):
             y0_r -= 50
             y1_r -= 50
         nbr += 1
+        if y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
+            y0_r = 457
+            y1_r = 497
+        if y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
+            y0_r = 457
+            y1_r = 497
     # déplacement vers le bas
     if touche == 'Down':
         if y0_r < 750:
             y0_r += 50
             y1_r += 50
         nbr += 1
+        if y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
+            y0_r = 307
+            y1_r = 347
+        if y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
+            y0_r = 307
+            y1_r = 347
     # déplacement vers la droite
     if touche == 'Right':
         if x1_r < 750:
             x0_r += 50
             x1_r += 50
         nbr += 1
+        if y0_r == 357 and y1_r == 397 and x0_r == 357 and x1_r == 397:
+            x0_r = 307
+            x1_r = 347
+        if y0_r == 407 and y1_r == 447 and x0_r == 357 and x1_r == 397:
+            x0_r = 307
+            x1_r = 347
     # déplacement vers la gauche
     if touche == 'Left':
         if x1_r > 50:
             x0_r -= 50
             x1_r -= 50
         nbr += 1
+        if y0_r == 407 and y1_r == 447 and x0_r == 407 and x1_r == 447:
+            x0_r = 457
+            x1_r = 497
+        if y0_r == 357 and y1_r == 397 and x0_r == 407 and x1_r == 447:
+            x0_r = 457
+            x1_r = 497
     print(x0_r, y0_r, x1_r, y1_r)
-
     canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
     texte_compteur.config(text=cpt)
 
