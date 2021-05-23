@@ -130,6 +130,7 @@ def generate_wall():
     walls[15][11] = generate_binary_wall([Direction.UP])
     walls[15][13] = generate_binary_wall([Direction.RIGHT])
     walls[15][14] = generate_binary_wall([Direction.LEFT])
+    
     return walls
 
 
