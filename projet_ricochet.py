@@ -5,7 +5,7 @@
 # Océane MACHADO
 # Aurélie ALVET
 # Timothé PEYREIGNE
-# Thushanth JEYAKANTHN
+# Thushanth JEYAKANTHAN
 # Yanis MERBAH
 # https://github.com/uvsq21915611/projet_robot
 ###################################################
@@ -55,7 +55,18 @@ def quitter():
     pass
 
 def clique(event):
-    position = (event.x // p, event.y // p)
+    clique_x = event.x // p 
+    clique_y = event.y // p
+    position = (clique_x, clique_y)
+    if clique_x == x0_r // p and clique_y == y0_r // p :
+       canvas.bind('<Key>', clavier_rouge)
+    if clique_x  == x0_v // p and clique_y  == y0_v // p :
+       canvas.bind('<Key>', clavier_vert) 
+    if clique_x  == x0_b // p and clique_y  == y0_b // p :
+       canvas.bind('<Key>', clavier_bleu) 
+    if clique_x  == x0_j // p and clique_y  == y0_j // p:
+       canvas.bind('<Key>', clavier_jaune) 
+   
     print(position)
 
 
@@ -668,4 +679,5 @@ for y, values in enumerate(walls):
 
 canvas.focus_set()
 canvas.bind('<Key>', clavier_rouge)
+
 racine.mainloop()
