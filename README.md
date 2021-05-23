@@ -2,7 +2,7 @@
     JEU ROBOT RICOCHET
 --------------------------
 
-Vous disposez de 4 robots (rouge, vert, bleu et jaune) et le but du jeu est de réussir à atteindre les cibles colorés grâce aux robots
+Vous disposez de 4 robots (rouge, vert, bleu et jaune) et le but du jeu est de réussir à atteindre les cibles colorées grâce aux robots
 
 Règles du jeu:
 - un robot se déplace en ligne droite uniquement
