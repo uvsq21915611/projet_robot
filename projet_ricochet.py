@@ -234,7 +234,6 @@ def clavier_rouge(event):
     global x0_r, x1_r, y0_r, y1_r, nbr, walls
     touche = event.keysym
     print(touche)
-    cpt = "Nombre de déplacements:   " + str(nbr)
     cibles()
     # déplacement vers le haut
     if touche == 'Up':
@@ -341,6 +340,7 @@ def clavier_rouge(event):
             x1_r = x1_j+50
     print(x0_r, y0_r, x1_r, y1_r)
     canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
+    cpt = "Nombre de déplacements:   " + str(nbr)
     texte_compteur.config(text=cpt)
 
 def clavier_vert(event):
@@ -348,7 +348,6 @@ def clavier_vert(event):
     global x0_v, x1_v, y0_v, y1_v, nbr
     touche = event.keysym
     print(touche)
-    cpt = "Nombre de déplacements:   " + str(nbr)
     cibles()
     # déplacement vers le haut
     if touche == 'Up':
@@ -456,6 +455,7 @@ def clavier_vert(event):
             x1_v = x1_j+50
     print(x0_v, y0_v, x1_v, y1_v)
     canvas.coords(robot_vert, x0_v, y0_v, x1_v, y1_v)
+    cpt = "Nombre de déplacements:   " + str(nbr)
     texte_compteur.config(text=cpt)
 
     
@@ -464,7 +464,6 @@ def clavier_bleu(event):
     global x0_b, x1_b, y0_b, y1_b, nbr
     touche = event.keysym
     print(touche)
-    cpt = "Nombre de déplacements:   " + str(nbr)
     cibles()
     # déplacement vers le haut
     if touche == 'Up':
@@ -572,6 +571,7 @@ def clavier_bleu(event):
             x1_b = x1_r+50
     print(x0_b, y0_b, x1_b, y1_b)
     canvas.coords(robot_bleu, x0_b, y0_b, x1_b, y1_b)
+    cpt = "Nombre de déplacements:   " + str(nbr)
     texte_compteur.config(text=cpt)
 
     
@@ -580,7 +580,6 @@ def clavier_jaune(event):
     global x0_j, x1_j, y0_j, y1_j, nbr
     touche = event.keysym
     print(touche)
-    cpt = "Nombre de déplacements:   " + str(nbr)
     cibles()
     # déplacement vers le haut
     if touche == 'Up':
@@ -688,6 +687,7 @@ def clavier_jaune(event):
             x1_j = x1_r+50
     print(x0_j, y0_j, x1_j, y1_j)
     canvas.coords(robot_jaune, x0_j, y0_j, x1_j, y1_j)
+    cpt = "Nombre de déplacements:   " + str(nbr)
     texte_compteur.config(text=cpt)
     
     
