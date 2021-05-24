@@ -20,6 +20,12 @@ WIDTH = n * c + 2
 HEIGHT = WIDTH
 stop = False
 
+# Coordonnées carré restart
+x0_restart = 350 + 2
+x1_restart = 450 + 2
+y0_restart = 350 + 2
+y1_restart = 450 + 2
+
 # Coordonnées initiales robot rouge
 x0_r = 5 + 2
 x1_r = 45 + 2
@@ -687,7 +693,7 @@ for ligne in range(n):
     cases.append(transit)
 
 # Création des murs verticaux et horizontaux et du carré central dans la grille
-carre_restart = canvas.create_rectangle(350 + 2, 350 + 2, 450 + 2, 450 + 2,
+carre_restart = canvas.create_rectangle(x0_restart, y0_restart, x1_restart, y1_restart,
                                         fill="black")
 
 walls = generate_wall()
