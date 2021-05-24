@@ -205,6 +205,7 @@ def clavier_rouge(event):
     touche = event.keysym
     print(touche)
     cpt = "Nombre de déplacements:   " + str(nbr)
+    cibles()
     # déplacement vers le haut
     if touche == 'Up':
         if y0_r > 40:
@@ -318,6 +319,7 @@ def clavier_vert(event):
     touche = event.keysym
     print(touche)
     cpt = "Nombre de déplacements:   " + str(nbr)
+    cibles()
     # déplacement vers le haut
     if touche == 'Up':
         if y0_v > 40:
@@ -432,6 +434,7 @@ def clavier_bleu(event):
     touche = event.keysym
     print(touche)
     cpt = "Nombre de déplacements:   " + str(nbr)
+    cibles()
     # déplacement vers le haut
     if touche == 'Up':
         if y0_b > 40:
@@ -546,6 +549,7 @@ def clavier_jaune(event):
     touche = event.keysym
     print(touche)
     cpt = "Nombre de déplacements:   " + str(nbr)
+    cibles()
     # déplacement vers le haut
     if touche == 'Up':
         if y0_j > 40:
@@ -653,6 +657,26 @@ def clavier_jaune(event):
     print(x0_j, y0_j, x1_j, y1_j)
     canvas.coords(robot_jaune, x0_j, y0_j, x1_j, y1_j)
     texte_compteur.config(text=cpt)
+    
+def cibles():
+    global cible_rouge, cible_verte, cible_bleu, cible_jaune
+    score = "Score: " + str(nbr)
+    if x0_r == 157 and x1_r == 197 and y0_r == 757 and y1_r == 797:
+        canvas.delete(cible_rouge)
+        cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green")
+        texte_resultat.config(text="Jeu résolu 1/4", bg="dark orange")
+    if x0_v == 707 and x1_v == 747 and y0_v == 707 and y1_v == 747:
+        cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green", state="hidden")
+        cible_bleu = canvas.create_rectangle(x0_cb, y0_cb, x1_cb, y1_cb, fill="blue")
+        texte_resultat.config(text="Jeu résolu 2/4", bg="orange")
+    if x0_b == 657 and x1_b == 697 and y0_b == 157 and y1_b == 197:
+        canvas.delete(cible_bleu)
+        cible_jaune = canvas.create_rectangle(x0_cj, y0_cj, x1_cj, y1_cj, fill="yellow")
+        texte_resultat.config(text="Jeu résolu 3/4", bg="gold")
+    if x0_j == 107 and x1_j == 147 and y0_j == 657 and y1_j == 697:
+        canvas.delete(cible_jaune)
+        texte_resultat.config(text="Jeu résolu", bg="green")
+        texte_score.config(text=score)
 
 # Interface graphique
 racine = tk.Tk()
