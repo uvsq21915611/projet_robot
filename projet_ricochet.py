@@ -18,7 +18,10 @@ n = 16  # Nombre de cases par ligne et par colonne
 cases = []
 WIDTH = n * c + 2
 HEIGHT = WIDTH
-stop = False
+nbr = 0
+cpt = "Nombre de déplacements:   " + str(nbr)
+liste_scores = []
+meilleur_score = "Meilleur score: "
 
 # Coordonnées carré restart
 x0_restart = 350 + 2
@@ -98,7 +101,9 @@ def clique(event):
     print(position)
     
 def reset():
-    global x0_r, x1_r, y0_r, y1_r, x0_v, x1_v, y0_v, y1_v, x0_b, x1_b, y0_b, y1_b, x0_j, x1_j, y0_j, y1_j
+    global x0_r, x1_r, y0_r, y1_r, x0_v, x1_v, y0_v, y1_v, x0_b, x1_b, y0_b, y1_b, x0_j, x1_j, y0_j, y1_j, x0_cr, x1_cr, y0_cr, y1_cr, x0_cv, x1_cv, y0_cv, y1_cv, x0_cb, x1_cb, y0_cb, y1_cb, x0_cj, x1_cj, y0_cj, y1_cj, nbr, cpt
+    nbr = 0
+    cpt = "Nombre de déplacements:   " + str(nbr)
     x0_r = 5 + 2
     x1_r = 45 + 2
     y0_r = 305 + 2
@@ -115,10 +120,17 @@ def reset():
     x1_j = 195 + 2
     y0_j = 105 + 2
     y1_j = 145 + 2
+    canvas.delete(cible_jaune)
+    canvas.delete(cible_verte)
+    canvas.delete(cible_bleu)
+    canvas.create_rectangle(x0_cr, y0_cr, x1_cr, y1_cr, fill="red")
     canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
     canvas.coords(robot_vert, x0_v, y0_v, x1_v, y1_v)
     canvas.coords(robot_bleu, x0_b, y0_b, x1_b, y1_b)
     canvas.coords(robot_jaune, x0_j, y0_j, x1_j, y1_j)
+    texte_compteur.config(text=cpt)
+    texte_resultat.config(text="Jeu résolu: NON", bg="red", fg="white")
+    texte_score.config(text="Score: ?")
 
 def generate_wall():
     walls = [[0] * n for _ in range(n)]
@@ -194,7 +206,6 @@ def generate_wall():
     walls[15][11] = generate_binary_wall([Direction.UP])
     walls[15][13] = generate_binary_wall([Direction.RIGHT])
     walls[15][14] = generate_binary_wall([Direction.LEFT])
-    
     return walls
 
 
@@ -215,9 +226,6 @@ def generate_binary_wall(directions):
 
 def get_robot_coords(x, y):
     return int((x - 7) / c), int((y - 7) / c)
-
-
-nbr = 0
 
 
 def clavier_rouge(event):
@@ -449,6 +457,7 @@ def clavier_vert(event):
     canvas.coords(robot_vert, x0_v, y0_v, x1_v, y1_v)
     texte_compteur.config(text=cpt)
 
+    
 def clavier_bleu(event):
     """ Gestion de l'événement Appui sur une touche du clavier """
     global x0_b, x1_b, y0_b, y1_b, nbr
@@ -564,6 +573,7 @@ def clavier_bleu(event):
     canvas.coords(robot_bleu, x0_b, y0_b, x1_b, y1_b)
     texte_compteur.config(text=cpt)
 
+    
 def clavier_jaune(event):
     """ Gestion de l'événement Appui sur une touche du clavier """
     global x0_j, x1_j, y0_j, y1_j, nbr
@@ -679,8 +689,9 @@ def clavier_jaune(event):
     canvas.coords(robot_jaune, x0_j, y0_j, x1_j, y1_j)
     texte_compteur.config(text=cpt)
     
+    
 def cibles():
-    global cible_rouge, cible_verte, cible_bleu, cible_jaune
+    global cible_rouge, cible_verte, cible_bleu, cible_jaune, liste_scores, meilleur_score
     score = "Score: " + str(nbr)
     if x0_r == 157 and x1_r == 197 and y0_r == 757 and y1_r == 797:
         canvas.delete(cible_rouge)
@@ -698,7 +709,19 @@ def cibles():
                     canvas.delete(cible_jaune)
                     texte_resultat.config(text="Jeu résolu", bg="green")
                     texte_score.config(text=score)
+                    # Création fichier best_score
+                    fic_write = open("best_scores", "w")
+                    liste_scores.append(nbr)
+                    liste_scores.sort()
+                    fic_write.write(str(liste_scores))
+                    fic_write.close()
+                    fic_read = open("best_scores", "r")
+                    liste_scores[0]
+                    meilleur_score = "Meilleur score: " + str(liste_scores[0])
+                    fic_read.close()
+                    texte_meilleur_score.config(text=meilleur_score)
 
+                    
 # Interface graphique
 racine = tk.Tk()
 racine.title("Projet robot ricochet")
@@ -721,11 +744,14 @@ cible_jaune = canvas.create_rectangle(x0_cj, y0_cj, x1_cj, y1_cj, fill="yellow",
 texte_compteur = tk.Label(racine, text="Nombre de déplacements:   0")
 texte_compteur.grid(row=0, column=2)
 
+texte_score = tk.Label(racine, text="Score: ?")
+texte_score.grid(row=1, column=2)
+
+texte_meilleur_score = tk.Label(racine, text="Meilleur Score: ?", fg="gold", bg="black")
+texte_meilleur_score.grid(row=2, column=2)
+
 texte_resultat = tk.Label(racine, text="Jeu résolu: NON", bg="red", fg="white")
 texte_resultat.grid(row=3, column=2)
-
-texte_score = tk.Label(racine, text="Score: ?")
-texte_score.grid(row=2, column=2)
 
 boutton_quitter = tk.Button(racine, text='Quitter', command=quitter)
 boutton_quitter.grid(row=4, column=2)
