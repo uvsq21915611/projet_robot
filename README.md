@@ -12,4 +12,4 @@ Fonctionnalités du jeu:
 - cliquer sur un robot pour le sélectionner
 - utiliser les flèches du clavier pour le déplacer
 - cliquer sur le carré central pour recommencer la partie
-- cliquer sur le boutton
+- un texte vert s'affichera lorsque vous aurez atteint toutes les cibles
