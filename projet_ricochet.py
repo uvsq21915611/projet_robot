@@ -128,6 +128,7 @@ def reset():
     canvas.coords(robot_vert, x0_v, y0_v, x1_v, y1_v)
     canvas.coords(robot_bleu, x0_b, y0_b, x1_b, y1_b)
     canvas.coords(robot_jaune, x0_j, y0_j, x1_j, y1_j)
+    cpt=0
     texte_compteur.config(text=cpt)
     texte_resultat.config(text="Jeu résolu: NON", bg="red", fg="white")
     texte_score.config(text="Score: ?")
@@ -720,8 +721,12 @@ def cibles():
                     meilleur_score = "Meilleur score: " + str(liste_scores[0])
                     fic_read.close()
                     texte_meilleur_score.config(text=meilleur_score)
-
-                    
+"""on peut aussi juste faire une fonction
+while meilleur_score < new_score         (le score est le nombre de mouvements minimum pour résoudre le jeu)
+    score = meilleur_score
+    else :
+        score = new_score
+"""                 
 # Interface graphique
 racine = tk.Tk()
 racine.title("Projet robot ricochet")
