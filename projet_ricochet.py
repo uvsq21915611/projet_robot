@@ -90,14 +90,35 @@ def clique(event):
     if clique_x == x0_r // p and clique_y == y0_r // p :
        canvas.bind('<Key>', clavier_rouge)
     if clique_x  == x0_v // p and clique_y  == y0_v // p :
-       canvas.bind('<Key>', clavier_vert) 
+       canvas.bind('<Key>', clavier_vert)
     if clique_x  == x0_b // p and clique_y  == y0_b // p :
-       canvas.bind('<Key>', clavier_bleu) 
+       canvas.bind('<Key>', clavier_bleu)
     if clique_x  == x0_j // p and clique_y  == y0_j // p:
-       canvas.bind('<Key>', clavier_jaune) 
-   
+       canvas.bind('<Key>', clavier_jaune)
     print(position)
-
+    
+def reset():
+    global x0_r, x1_r, y0_r, y1_r, x0_v, x1_v, y0_v, y1_v, x0_b, x1_b, y0_b, y1_b, x0_j, x1_j, y0_j, y1_j
+    x0_r = 5 + 2
+    x1_r = 45 + 2
+    y0_r = 305 + 2
+    y1_r = 345 + 2
+    x0_v = 55 + 2
+    x1_v = 95 + 2
+    y0_v = 55 + 2
+    y1_v = 95 + 2
+    x0_b = 605 + 2
+    x1_b = 645 + 2
+    y0_b = 205 + 2
+    y1_b = 245 + 2
+    x0_j = 155 + 2
+    x1_j = 195 + 2
+    y0_j = 105 + 2
+    y1_j = 145 + 2
+    canvas.coords(robot_rouge, x0_r, y0_r, x1_r, y1_r)
+    canvas.coords(robot_vert, x0_v, y0_v, x1_v, y1_v)
+    canvas.coords(robot_bleu, x0_b, y0_b, x1_b, y1_b)
+    canvas.coords(robot_jaune, x0_j, y0_j, x1_j, y1_j)
 
 def generate_wall():
     walls = [[0] * n for _ in range(n)]
@@ -706,7 +727,8 @@ texte_resultat.grid(row=3, column=2)
 boutton_quitter = tk.Button(racine, text='Quitter', command=quitter)
 boutton_quitter.grid(row=4, column=2)
 
-canvas.bind("<Button-1>", clique)
+bouton_restart = tk.Button(racine, width=13, height=5, text="RESTART", bg="black", fg="white", activebackground="black", command=reset)
+bouton_restart.place(x=350+2, y=355+2)
 
 # Création grille 16x16 avec carré de côté 50
 for ligne in range(n):
@@ -734,5 +756,6 @@ for y, values in enumerate(walls):
         if value & Direction.RIGHT.value:
             canvas.create_rectangle((x + 1) * c, y * c + 2, (x + 1) * c + 2, (y + 1) * c + 2, fill="black")
 
+canvas.bind("<Button-1>", clique)
 canvas.focus_set()
 racine.mainloop()
