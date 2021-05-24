@@ -713,9 +713,9 @@ robot_bleu = canvas.create_oval(x0_b, y0_b, x1_b, y1_b, fill="blue")
 robot_jaune = canvas.create_oval(x0_j, y0_j, x1_j, y1_j, fill="yellow")
 
 cible_rouge = canvas.create_rectangle(x0_cr, y0_cr, x1_cr, y1_cr, fill="red")
-cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green")
-cible_bleu = canvas.create_rectangle(x0_cb, y0_cb, x1_cb, y1_cb, fill="blue")
-cible_jaune = canvas.create_rectangle(x0_cj, y0_cj, x1_cj, y1_cj, fill="yellow")
+cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green", state="hidden")
+cible_bleu = canvas.create_rectangle(x0_cb, y0_cb, x1_cb, y1_cb, fill="blue", state="hidden")
+cible_jaune = canvas.create_rectangle(x0_cj, y0_cj, x1_cj, y1_cj, fill="yellow", state="hidden")
 
 # Création labels/bouttons
 texte_compteur = tk.Label(racine, text="Nombre de déplacements:   0")
