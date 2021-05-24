@@ -686,18 +686,18 @@ def cibles():
         canvas.delete(cible_rouge)
         cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green")
         texte_resultat.config(text="Jeu résolu 1/4", bg="dark orange")
-    if x0_v == 707 and x1_v == 747 and y0_v == 707 and y1_v == 747:
-        cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green", state="hidden")
-        cible_bleu = canvas.create_rectangle(x0_cb, y0_cb, x1_cb, y1_cb, fill="blue")
-        texte_resultat.config(text="Jeu résolu 2/4", bg="orange")
-    if x0_b == 657 and x1_b == 697 and y0_b == 157 and y1_b == 197:
-        canvas.delete(cible_bleu)
-        cible_jaune = canvas.create_rectangle(x0_cj, y0_cj, x1_cj, y1_cj, fill="yellow")
-        texte_resultat.config(text="Jeu résolu 3/4", bg="gold")
-    if x0_j == 107 and x1_j == 147 and y0_j == 657 and y1_j == 697:
-        canvas.delete(cible_jaune)
-        texte_resultat.config(text="Jeu résolu", bg="green")
-        texte_score.config(text=score)
+        if x0_v == 707 and x1_v == 747 and y0_v == 707 and y1_v == 747:
+            cible_verte = canvas.create_rectangle(x0_cv, y0_cv, x1_cv, y1_cv, fill="green", state="hidden")
+            cible_bleu = canvas.create_rectangle(x0_cb, y0_cb, x1_cb, y1_cb, fill="blue")
+            texte_resultat.config(text="Jeu résolu 2/4", bg="orange")
+            if x0_b == 657 and x1_b == 697 and y0_b == 157 and y1_b == 197:
+                canvas.delete(cible_bleu)
+                cible_jaune = canvas.create_rectangle(x0_cj, y0_cj, x1_cj, y1_cj, fill="yellow")
+                texte_resultat.config(text="Jeu résolu 3/4", bg="gold")
+                if x0_j == 107 and x1_j == 147 and y0_j == 657 and y1_j == 697:
+                    canvas.delete(cible_jaune)
+                    texte_resultat.config(text="Jeu résolu", bg="green")
+                    texte_score.config(text=score)
 
 # Interface graphique
 racine = tk.Tk()
@@ -723,6 +723,9 @@ texte_compteur.grid(row=0, column=2)
 
 texte_resultat = tk.Label(racine, text="Jeu résolu: NON", bg="red", fg="white")
 texte_resultat.grid(row=3, column=2)
+
+texte_score = tk.Label(racine, text="Score: ?")
+texte_score.grid(row=2, column=2)
 
 boutton_quitter = tk.Button(racine, text='Quitter', command=quitter)
 boutton_quitter.grid(row=4, column=2)
