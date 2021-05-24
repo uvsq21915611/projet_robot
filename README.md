@@ -15,3 +15,6 @@ Fonctionnalités du jeu:
 - utiliser les flèches du clavier pour le déplacer
 - cliquer sur le carré central pour recommencer la partie
 - un texte vert s'affichera lorsque vous aurez atteint toutes les cibles
+
+Précisions: nous n'avons pas réussi à faire un mouvement en ligne droite horizontale ou verticale (seulement case par case) et à effacer les cibles après qu'elle soit atteinte.
+De plus après avoir positionné son robot sur la cible de la même couleur, il faut faire un pas de plus vers le mur le plus proche pour réussir le jeu.
